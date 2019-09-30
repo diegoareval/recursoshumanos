@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated sep 12, 2019 10:05:34 a.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.devs.entities.Puestos" table="puestos" catalog="bdhumanresources" optimistic-lock="version">
+        <id name="idpuesto" type="java.lang.Integer">
+            <column name="idpuesto" />
+            <generator class="foreign">
+                <param name="property">area</param>
+            </generator>
+        </id>
+        <one-to-one name="area" class="com.devs.entities.Area" constrained="true" lazy="false"></one-to-one>
+        <property name="puesto" type="string">
+            <column name="puesto" length="45" />
+        </property>
+        <property name="idarea" type="string">
+            <column name="idarea" length="45" />
+        </property>
+        <set name="empleadoses" table="empleados" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="idpuesto" />
+            </key>
+            <one-to-many class="com.devs.entities.Empleados" />
+        </set>
+    </class>
+</hibernate-mapping>

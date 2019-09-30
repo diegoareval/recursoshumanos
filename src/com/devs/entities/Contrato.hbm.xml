@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated sep 12, 2019 10:05:34 a.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.devs.entities.Contrato" table="contrato" catalog="bdhumanresources" optimistic-lock="version">
+        <id name="idcontrato" type="java.lang.Integer">
+            <column name="idcontrato" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empleados" class="com.devs.entities.Empleados" fetch="select" lazy="false">
+            <column name="idempleado" />
+        </many-to-one>
+        <property name="fechainicio" type="date">
+            <column name="fechainicio" length="10" />
+        </property>
+        <property name="finalizacion" type="date">
+            <column name="finalizacion" length="10" />
+        </property>
+        <property name="extendido" type="string">
+            <column name="extendido" length="45" />
+        </property>
+        <property name="lugartrabajo" type="string">
+            <column name="lugartrabajo" length="75" />
+        </property>
+        <set name="devengoses" table="devengos" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="idcontrato" />
+            </key>
+            <one-to-many class="com.devs.entities.Devengos" />
+        </set>
+        <set name="obligacioneses" table="obligaciones" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="idcontrato" />
+            </key>
+            <one-to-many class="com.devs.entities.Obligaciones" />
+        </set>
+    </class>
+</hibernate-mapping>

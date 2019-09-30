@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated sep 12, 2019 10:05:34 a.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.devs.entities.Pagosanual" table="pagosanual" catalog="bdhumanresources" optimistic-lock="version">
+        <id name="idpago" type="java.lang.Integer">
+            <column name="idpago" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="empleados" class="com.devs.entities.Empleados" fetch="select">
+            <column name="idempleado" />
+        </many-to-one>
+        <property name="salarioanual" type="big_decimal">
+            <column name="salarioanual" precision="10" />
+        </property>
+        <property name="isss" type="big_decimal">
+            <column name="isss" precision="10" />
+        </property>
+        <property name="afp" type="big_decimal">
+            <column name="afp" precision="10" />
+        </property>
+        <property name="aguinaldo" type="big_decimal">
+            <column name="aguinaldo" precision="10" />
+        </property>
+        <property name="vacaciones" type="big_decimal">
+            <column name="vacaciones" precision="10" />
+        </property>
+    </class>
+</hibernate-mapping>

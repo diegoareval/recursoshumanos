@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated sep 12, 2019 10:05:34 a.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.devs.entities.Gerencia" table="gerencia" catalog="bdhumanresources" optimistic-lock="version">
+        <id name="idgerencia" type="java.lang.Integer">
+            <column name="idgerencia" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="100" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <set name="areas" table="area" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="idgerente" />
+            </key>
+            <one-to-many class="com.devs.entities.Area" />
+        </set>
+        <set name="usuarioses" table="usuarios" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="idgerencia" not-null="true" />
+            </key>
+            <one-to-many class="com.devs.entities.Usuarios" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated sep 12, 2019 10:05:34 a.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.devs.entities.Planillas" table="planillas" catalog="bdhumanresources" optimistic-lock="version">
+        <id name="idplanilla" type="java.lang.Integer">
+            <column name="idplanilla" />
+            <generator class="identity" />
+        </id>
+        <property name="desdeFecha" type="date">
+            <column name="desde_fecha" length="10" />
+        </property>
+        <property name="hastaFecha" type="date">
+            <column name="hasta_fecha" length="10" />
+        </property>
+        <set name="pagomensuals" table="pagomensual" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idplanilla" />
+            </key>
+            <one-to-many class="com.devs.entities.Pagomensual" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated sep 12, 2019 10:05:34 a.m. by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.devs.entities.Empleados" table="empleados" catalog="bdhumanresources" optimistic-lock="version">
+        <id name="idempleado" type="java.lang.Integer">
+            <column name="idempleado" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="puestos" class="com.devs.entities.Puestos" fetch="select" lazy="false">
+            <column name="idpuesto" />
+        </many-to-one>
+        <property name="nombres" type="string">
+            <column name="nombres" length="70" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="70" />
+        </property>
+        <property name="dui" type="string">
+            <column name="dui" length="10" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="10" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" length="50" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="15" />
+        </property>
+        <property name="salario" type="big_decimal">
+            <column name="salario" precision="10" />
+        </property>
+        <set name="pagomensuals" table="pagomensual" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempleado" />
+            </key>
+            <one-to-many class="com.devs.entities.Pagomensual" />
+        </set>
+        <set name="contratos" table="contrato" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="idempleado" />
+            </key>
+            <one-to-many class="com.devs.entities.Contrato" />
+        </set>
+        <set name="pagosanuals" table="pagosanual" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempleado" />
+            </key>
+            <one-to-many class="com.devs.entities.Pagosanual" />
+        </set>
+    </class>
+</hibernate-mapping>
